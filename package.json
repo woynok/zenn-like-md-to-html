@@ -2,7 +2,7 @@
   "name": "zenn-like-md-to-html",
   "displayName": "zenn-like-md-to-html",
   "description": "render markown wrtten in Zenn note notation to html",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "sakanaX",
   "engines": {
     "vscode": "^1.92.0"
