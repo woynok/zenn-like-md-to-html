@@ -21,6 +21,10 @@
     "name": "woynok",
     "email": "please_use_github_issue@thousands.emails.unread"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woynok/zenn-like-md-to-html.git"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
