@@ -1,0 +1,77 @@
+{
+  "name": "zenn-like-md-to-html",
+  "displayName": "zenn-like-md-to-html",
+  "description": "render markown wrtten in Zenn note notation to html",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "zenn",
+    "markdown",
+    "html",
+    "md",
+    "render",
+    "note"
+  ],
+  "author": {
+    "name": "woynok",
+    "email": "please_use_github_issue@thousands.emails.unread"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "zenn-like-md-to-html.exportPage",
+        "title": "zenn-like-md-to-html:export one md file to an html file"
+      },
+      {
+        "command": "zenn-like-md-to-html.exportWorkspace",
+        "title": "zenn-like-md-to-html:export all md files in the workspace to html files with file-navigation links"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "zenn-like-md-to-html.exportPage",
+        "key": "ctrl+shift+alt+p",
+        "mac": "command+shift+alt+p",
+        "when": "editorLangId == markdown"
+      },
+      {
+        "command": "zenn-like-md-to-html.exportWorkspace",
+        "key": "ctrl+shift+alt+d",
+        "mac": "command+shift+alt+d"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.92.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/highlight.js": "^10.1.0",
+    "@types/prettier": "^3.0.0",
+    "prettier": "^3.3.3",
+    "zenn-content-css": "^0.1.155",
+    "zenn-markdown-html": "^0.1.155"
+  }
+}
