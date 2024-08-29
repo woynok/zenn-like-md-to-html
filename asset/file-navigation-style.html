@@ -1,0 +1,54 @@
+
+    <style>
+      div.file-navigation > div.file-navigation-contents {
+        margin-left: 1.2em;
+        margin-right: 0.8em;
+      }
+      div.file-navigation ul {
+        list-style-type: none;
+        padding: 0;
+        margin-left: 1.2em;
+        padding: 0.05em 0.1em;
+        font-size: 0.9em;
+      }
+      div.file-navigation ul li {
+        list-style-type: none;
+        text-align: left;
+      }
+      div.file-navigation ul li > a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        margin: 0.15em 0.1em;
+        padding: 0 0.5em;
+        height: 1.8em;
+        line-height: 1.5em;
+        background-color: #f4f4f4;
+        border-radius: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      div.file-navigation ul li.folder > a {
+        cursor: default;
+        pointer-events: none;
+      }
+
+      div.file-navigation ul li.folder > a::before {
+        content: "📁 ";
+        margin-right: 0.5em;
+      }
+      div.file-navigation ul li.file > a::before {
+        content: "📄 ";
+        margin-right: 0.5em;
+      }
+      div.file-navigation li.file.active > a {
+        background: linear-gradient(90deg, rgba(255, 255, 54, 1.0), rgba(255, 255, 109, 1.0), rgba(255, 255, 180, 1.0), #f4f4f4 100%);
+      }
+      div.file-navigation li.file.active > a::before {
+        content: "📄🌟 ";
+        margin-right: 0.5em;
+      }
+    </style>
+    
