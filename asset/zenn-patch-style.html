@@ -1,69 +1,77 @@
-
 <style>
-    div.container > div.doc-container > div.column-main-content div.znc details {
-      font-size: 0.95em;
-      margin: 1rem 0;
-      line-height: 1.7;
-    }
-    div.container > div.doc-container > div.column-main-content div.znc summary {
-      cursor: pointer;
-      outline: 0;
-      padding: 0.7em 0.7em 0.7em 0.9em;
-      border: solid 1px #d6e3ed;
-      color: var(--c-contrast);
-      font-size: 0.9em;
-      border-radius: 14px;
-      background: #fff;
-    }
-    div.container > div.doc-container > div.column-main-content div.znc summary::-webkit-details-marker {
-      color: #65717b;
-    }
+  div.container>div.doc-container>div.column-main-content div.znc details {
+    font-size: 0.95em;
+    margin: 1rem 0;
+    line-height: 1.7;
+  }
 
-    div.container > div.doc-container > div.column-main-content div.znc details[open] > summary {
-      border-radius: 14px 14px 0 0;
-      box-shadow: none;
-      background: #f1f5f9;
-      border-bottom: none;
-    }
-    div.container > div.doc-container > div.column-main-content div.znc details > .details-content {
-      border-radius: 14px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 0.5s ease-out, transform 0.3s ease-out;
-    }
-    div.container > div.doc-container > div.column-main-content div.znc details[open] > .details-content {
-      padding: 0.5em 0.9em;
-      border: solid 1px #d6e3ed;
-      border-radius: 0 0 14px 14px;
-      background: #fff;
-      opacity: 1.0;
-      transform: translateY(0);
-      transition: opacity 0.5s ease-out, transform 0.3s ease-out;
-    }
-    div.container > div.doc-container > div.column-main-content div.znc .details-content > * {
-      margin: 0.5em 0;
-    }
+  div.container>div.doc-container>div.column-main-content div.znc summary {
+    cursor: pointer;
+    outline: 0;
+    padding: 0.7em 0.7em 0.7em 0.9em;
+    border: solid 1px #d6e3ed;
+    color: var(--c-contrast);
+    font-size: 0.9em;
+    border-radius: 14px;
+    background: #fff;
+  }
 
-    div.container div.column-main-content div.znc table {
-      max-height: 70vh;
-      overflow: auto;
-    }
-    /* first row as a sticky header */
-    div.container div.column-main-content div.znc>table>thead>tr>th{
-      position: sticky;
-      top: -1px;
-      z-index: 10;
-      background-color: #bfd9f3!important;
-      /* overflow-wrap: anywhere; */
-      /* min-width: 150px; */
-    }
-    /* first column as a sticky column */
-    div.container div.column-main-content div.znc table th:first-child,
-    div.container div.column-main-content div.znc table td:first-child {
-      position: sticky;
-      left: -1px;
-      background-color: #edf2f7;
-    }
-    
-  </style>
-  
+  div.container>div.doc-container>div.column-main-content div.znc summary::-webkit-details-marker {
+    color: #65717b;
+  }
+
+  div.container>div.doc-container>div.column-main-content div.znc details[open]>summary {
+    border-radius: 14px 14px 0 0;
+    box-shadow: none;
+    background: #f1f5f9;
+    border-bottom: none;
+  }
+
+  div.container>div.doc-container>div.column-main-content div.znc details>.details-content {
+    border-radius: 14px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.3s ease-out;
+  }
+
+  div.container>div.doc-container>div.column-main-content div.znc details[open]>.details-content {
+    padding: 0.5em 0.9em;
+    border: solid 1px #d6e3ed;
+    border-radius: 0 0 14px 14px;
+    background: #fff;
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.3s ease-out;
+  }
+
+  div.container>div.doc-container>div.column-main-content div.znc .details-content>* {
+    margin: 0.5em 0;
+  }
+
+  div.container div.column-main-content div.znc table {
+    max-height: 70vh;
+    overflow: auto;
+  }
+
+  /* first row as a sticky header */
+  div.container div.column-main-content div.znc>table>thead>tr>th {
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+    background-color: #bfd9f3 !important;
+    /* overflow-wrap: anywhere; */
+    /* min-width: 150px; */
+  }
+
+  /* first column as a sticky column */
+  div.container div.column-main-content div.znc table th:first-child,
+  div.container div.column-main-content div.znc table td:first-child {
+    position: sticky;
+    left: -1px;
+    background-color: #edf2f7;
+  }
+</style>

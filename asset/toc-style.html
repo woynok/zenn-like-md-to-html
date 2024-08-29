@@ -1,92 +1,112 @@
-
 <style>
-    .toc {
-      position: block;
-      /* width: 400px; */
-      top: 0;
-      padding-left: 10px;
-      padding-right: 10px;
-      background-color: rgba(50, 120, 220, 0.15);
-      border: 1px solid #eaecef;
-      border-radius: 12px;
-      margin: 0;
-    }
-    .toc li {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .toc > ul {
-      padding: 4px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
-    .toc a {
-      color: #272727;
-      text-decoration: none;
-    }
-    /* hover されている、 li.toc-level-1以外 を opacity をつけて多段で色を付ける */
-    .toc li:not(.toc-level-1):hover {
-      background-color: rgba(0, 183, 255, 0.2);
-    }
-    .toc a:hover,
-    .toc a:active {
-      color: rgb(228, 42, 42);
-    }
-    .toc ul {
-      list-style-type: none;
-      padding: 4px;
-    }
-    .toc ul ul {
-      padding-left: 12px;
-    }
-    .toc ul ul ul {
-      padding-left: 12px;
-    }
-    .toc ul ul ul ul {
-      padding-left: 12px;
-    }
-    .toc li.toc-level-3::before {
-      content: "▷ ";
-    }
-    .toc li.toc-level-3:has(ul)::before {
-      content: "▶ ";
-      rotate: 0;
-      transition: rotate 0.5s;
-    }
-    .toc li.toc-level-3:has(ul):hover::before,
-    .toc li.toc-level-3:has(ul):active::before {
-      content: "▼ ";
-    }
-    .toc li.toc-level-4 {
-      display: list-item;
-      height: 0;
-      opacity: 0;
-      transition: height 0.8s, opacity 0.8s;
-    }
-    .toc li.toc-level-3:hover li.toc-level-4,
-    .toc li.toc-level-3:active li.toc-level-4 {
-      display: list-item;
-      height: 1.4em;
-      opacity: 1;
-      transition: height 0.3s, opacity 0.6s;
-    }
-    .toc li.toc-level-1 {
-      font-size: 1.2em;
-      font-weight: bold;
-      margin-bottom: 3px;
-    }
-    .toc li.toc-level-2 {
-      font-size: 0.8em;
-      margin-bottom: 1px;
-    }
-    .toc li.toc-level-3 {
-      font-size: 0.82em;
-      margin-bottom: 1px;
-    }
-    .toc li.toc-level-4 {
-      font-size: 0.9em;
-      margin-bottom: 1px;
-    }
-  </style>
-  
+  .toc {
+    position: block;
+    /* width: 400px; */
+    top: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #eaecef;
+    border-radius: 12px;
+    margin: 0;
+  }
+
+  .toc li {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .toc>ul {
+    padding: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .toc a {
+    color: #272727;
+    text-decoration: none;
+  }
+
+  /* hover されている、 li.toc-level-1以外 を opacity をつけて多段で色を付ける */
+  .toc li:not(.toc-level-1):hover {
+    background-color: rgba(0, 183, 255, 0.2);
+  }
+
+  .toc a:hover,
+  .toc a:active {
+    color: rgb(228, 42, 42);
+  }
+
+  .toc ul {
+    list-style-type: none;
+    padding: 4px;
+  }
+
+  .toc ul ul {
+    padding-left: 12px;
+  }
+
+  .toc ul ul ul {
+    padding-left: 12px;
+  }
+
+  .toc ul ul ul ul {
+    padding-left: 12px;
+  }
+
+  .toc li.toc-level-3::before {
+    content: "▷ ";
+  }
+
+  .toc li.toc-level-3:has(ul)::before {
+    content: "▶ ";
+    rotate: 0;
+    transition: rotate 0.5s;
+  }
+
+  .toc li.toc-level-3:has(ul):hover::before,
+  .toc li.toc-level-3:has(ul):active::before {
+    content: "▼ ";
+  }
+
+  .toc li.toc-level-4 {
+    display: list-item;
+    height: 0;
+    opacity: 0;
+    transition:
+      height 0.8s,
+      opacity 0.8s;
+  }
+
+  .toc li.toc-level-3:hover li.toc-level-4,
+  .toc li.toc-level-3:active li.toc-level-4 {
+    display: list-item;
+    height: 1.4em;
+    opacity: 1;
+    transition:
+      height 0.3s,
+      opacity 0.6s;
+  }
+
+  .toc li.toc-level-1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .toc li.toc-level-2 {
+    font-size: 0.8em;
+    margin-bottom: 1px;
+  }
+
+  .toc li.toc-level-3 {
+    font-size: 0.82em;
+    margin-bottom: 1px;
+  }
+
+  .toc li.toc-level-4 {
+    font-size: 0.9em;
+    margin-bottom: 1px;
+  }
+</style>
