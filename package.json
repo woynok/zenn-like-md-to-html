@@ -32,11 +32,11 @@
     "commands": [
       {
         "command": "zenn-like-md-to-html.exportPage",
-        "title": "zenn-like-md-to-html:export one md file to an html file"
+        "title": "zenn-like-md-to-html:Export Single md file to an html file"
       },
       {
         "command": "zenn-like-md-to-html.exportWorkspace",
-        "title": "zenn-like-md-to-html:export all md files in the workspace to html files with file-navigation links"
+        "title": "zenn-like-md-to-html:Export All md files in the workspace to html files with file-navigation links"
       }
     ],
     "keybindings": [

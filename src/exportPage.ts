@@ -62,8 +62,9 @@ async function buildHtml(
 
   // doc.getText()をもとに、サイドバーを作るため、目次を作成する
   // 下記の方法では、``` で囲まれたコードブロック内の # は、目次に含まれてしまうので、最初にコードブロックを取り除く
-  let markdownTextWithoutCodeBlock = markdownText.replace(/```[\s\S]*?```/g, '');
-  markdownTextWithoutCodeBlock = markdownTextWithoutCodeBlock.replace(/:::[\s\S]*?:::/g, '');
+  // TODO: この処理も改善の余地がある。BlockListを階層構造にしてネスト構造を考慮して実施が必要
+  let markdownTextWithoutCodeBlock = markdownText.replace(/^```[\s\S]*?```/g, '');
+  markdownTextWithoutCodeBlock = markdownTextWithoutCodeBlock.replace(/^:::[\s\S]*?:::/g, '');
 
   // h2 以下の見出しを取り出す
   let tocStringList = markdownTextWithoutCodeBlock.split(/\n|\r/g).filter(
@@ -140,8 +141,10 @@ async function buildHtml(
   // ![text](uri) または、 ![text](uri =250x)のような形式のものを取り出す
   // さらに、uriはhttpやhttpsから始まらず、!は行頭であるものを取り出す
 
-  // block内は、終端が見れるまではgreedy matchではなく、 non-greedy match にする
-  let codeBlockRegex = /(:::|```)(?:(.*$)\n)?([\s\S]*?)(:::|```)/m;
+  // block内は、終端が見れるまではgreedy matchではなく、 non-greedy match にする。始端と終端は同じ記号である必要がある
+  let codeBlockRegex = /(:{3,}|`{3,})(?:(.*$)\n)?([\s\S]*?)(?:(?:\n\1)|$)/m;
+  // ネスト構造をいずれ、処理したい。
+
   // まずは、 markdownTextのうち、```に囲まれていたり、:::に囲まれていたりするcode block に該当しない各部分を取り出して、whileで回す
   // そのためには、markdownTextのCode Block部分に該当するたびに、そこまでのテキストと、そのテキストがCode Blockであるかどうかを記録しておく
   let markdownBlockList: markdownBlock[] = [];
