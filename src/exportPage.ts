@@ -258,7 +258,8 @@ async function buildHtml(
     markdownTextTarget = markdownTextTarget.slice(markdownBlockMatch.index + codeBlock.length);
   }
   // 次に、plain textまたはcalloutの部分のみ、![]() を取り出す。ただし、inline code block内には、![]() があっても、画像ではないので、無視する
-  let imgRegex = /^!\[([^\]]*)\]\(([^)]+)(?:\s*=\s*(\d+)x(\d+))?\)/g;
+  let imgRegex = /^!\[([^\]]*)\]\(([^)]+)(?:\s*=\s*(\d+)x(\d+))?\)$/gm;
+  
   let imgSrcList: string[] = [];
   // imgRegex の 1番目は、alt text, 2番目は、uri, 3番目は、width
   let imgMatch;
@@ -268,52 +269,25 @@ async function buildHtml(
       let markdownTextTarget = markdownBlock.text;
       while ((imgMatch = imgRegex.exec(markdownTextTarget)) !== null) {
         let imgSrc = imgMatch[2];
-        imgSrcList.push(imgSrc);
+        let imgAlt = imgMatch[1];
+        // もし、http:// または https:// で始まらない場合
+        if (!imgSrc.startsWith('http://') && !imgSrc.startsWith('https://') && !imgSrc.startsWith('data:image/') && !imgSrc.startsWith('data:application/')) {
+          let imgReplaced = `![${imgAlt}](./TOBE_BASE64_IMGPATH_${imgSrc}_TO_BE_BASE64_IMGPATH)`;
+          markdownBlockList[i].text = markdownBlockList[i].text.slice(0, imgMatch.index) + imgReplaced + markdownBlockList[i].text.slice(imgMatch.index + imgMatch[0].length);
+          // markdownの状態でdataを入れるとrendererの処理が重いので、いったんマーキングだけして、後で置き換える
+          imgSrcList.push(imgSrc);
+        }
       }
     }
   }
 
   let rootDirectory = workspace.getWorkspaceFolder(doc.uri)?.uri.fsPath || "";
   let thisDocDirectory = path.dirname(doc.uri.fsPath);
-  for (let i = 0; i < imgSrcList.length; i++) {
-    let imgSrc = imgSrcList[i];
-    if (!imgSrc.startsWith('http://') && !imgSrc.startsWith('https://') && !imgSrc.startsWith('data:image/') && !imgSrc.startsWith('data:application/')) {
-      // path が . で始まる場合は、directory からの相対パスとして扱う
-      // path が / で始まる場合は、workspaceのrootからの絶対パスとして扱う
-      // それ以外の場合は、directory からの相対パスとして扱う
-      // ![alt text](imgSrc) を ![alt text](./TOBE_BASE64_IMGPATH_imgSrc_TO_BE_BASE64_IMGPATH) に置き換える。必ず行頭にあるべき
-      let imgRegexSearch = /^!\[([^\]]*)\]\(([^)]+)(?:\s*=\s*(\d+)x(\d+))?\)/g;
-      // while ((imgMatch = imgRegexSearch.exec(markdownText)) !== null) {
-      //     let imgString = imgMatch[0];
-      //     let imgAlt = imgMatch[1];
-      //     markdownText = markdownText.replace(imgString, `![${imgAlt}](./TOBE_BASE64_IMGPATH_${imgSrc}_TO_BE_BASE64_IMGPATH)`);
-      // }
-      // markdownText ではなく、markdownBlockList を使う
-      for (let i = 0; i < markdownBlockList.length; i++) {
-        let markdownBlock = markdownBlockList[i];
-        if (markdownBlock.type === 'plain' || markdownBlock.type === 'callout') {
-          let markdownTextTarget = markdownBlock.text;
-          while ((imgMatch = imgRegexSearch.exec(markdownTextTarget)) !== null) {
-            let imgString = imgMatch[0];
-            let imgAlt = imgMatch[1];
-            // regexpでmatchした行のmatchした文字列を置き換える
-            let targetStringStart = markdownTextTarget.slice(0, imgMatch.index);
-            let targetStringEnd = markdownTextTarget.slice(imgMatch.index + imgString.length);
-            let imgStringReplaced = `![${imgAlt}](./TOBE_BASE64_IMGPATH_${imgSrc}_TO_BE_BASE64_IMGPATH)`;
-            markdownTextTarget = targetStringStart + imgStringReplaced + targetStringEnd;
-          }
-          markdownBlockList[i].text = markdownTextTarget;
-        }
-      }
-    }
-  }
   // markdownBlockList を使って、markdownTextを再構築する
   let markdownTextReconstructed = '';
   for (let i = 0; i < markdownBlockList.length; i++) {
     markdownTextReconstructed += markdownBlockList[i].text;
   }
-
-  // 上記の画像uri
 
   let zennContent = markdownToHtml(markdownTextReconstructed, {
     embedOrigin: "https://embed.zenn.studio",
@@ -856,7 +830,7 @@ async function buildHtml(
     ;
 
   // <img src="..." alt="..." ... /> のようになっているものについて、alt textをtitleに入れる
-  let imgRegexForAddTitle = /<img src="([^"]+)" alt="([^"]+)"([^>]*)>/g;
+  let imgRegexForAddTitle = /<img src="([^"]+?)" alt="([^"]+?)"([^>]*?)>/g;
   let imgMatchForAddTitle;
   while ((imgMatchForAddTitle = imgRegexForAddTitle.exec(zennHtml)) !== null) {
     let imgString = imgMatchForAddTitle[0];
