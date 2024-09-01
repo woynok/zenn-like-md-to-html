@@ -168,7 +168,7 @@ async function buildHtml(
     markdownTextTarget = markdownTextTarget.slice(markdownBlockMatch.index + codeBlock.length);
   }
   // 次に、plain textまたはcalloutの部分のみ、![]() を取り出す。ただし、inline code block内には、![]() があっても、画像ではないので、無視する
-  let imgRegex = /^!\[([^\]]*)\]\(([^)]+)(?:\s*=\s*(\d+)x(\d+))?\)$/gm;
+  let imgRegex = /^!\[([^\]]*)\]\((?!\.\/TOBE_BASE64_IMGPATH_)([^)]+)(?:\s*=\s*(\d+)x(\d+))?\)$/gm;
   
   let imgSrcList: string[] = [];
   // imgRegex の 1番目は、alt text, 2番目は、uri, 3番目は、width
@@ -186,6 +186,7 @@ async function buildHtml(
           markdownBlockList[i].text = markdownBlockList[i].text.slice(0, imgMatch.index) + imgReplaced + markdownBlockList[i].text.slice(imgMatch.index + imgMatch[0].length);
           // markdownの状態でdataを入れるとrendererの処理が重いので、いったんマーキングだけして、後で置き換える
           imgSrcList.push(imgSrc);
+          markdownTextTarget = markdownTextTarget.slice(0, imgMatch.index) + imgReplaced + markdownTextTarget.slice(imgMatch.index + imgMatch[0].length);
         }
       }
     }
