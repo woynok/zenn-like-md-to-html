@@ -303,11 +303,15 @@ async function buildHtml(
       {
         parser: "html",
         printWidth: 260,
+        endOfLine: "auto",
       }
     );
     html = await promiseHtml;
   } catch (e: any) {
-    window.showWarningMessage('🐶 ' + title + ' をhtml化しましたが、htmlとしてparseできないhtmlになっています 🐶');
+    // let warningMessage = '🐶 ' + title + ' をhtml化しましたが、htmlとしてparseできないhtmlになっています 🐶' + '\n\n' + e.message;
+    // これだと、ansi escape codeがそのまま表示されてしまうので、それを取り除く
+    let warningMessage = '🐶 ' + title + ' をhtml化しましたが、htmlとしてparseできないhtmlになっています 🐶' + '\n\n' + e.message.replace(/\u001b\[\d+m/g, '');
+    window.showWarningMessage(warningMessage);
     html = zennHtml;
   }
   // writeFile せずに、 outPath, html, title を返す
