@@ -151,6 +151,9 @@ async function buildHtml(
   let markdownTextTarget = markdownText;
   let markdownBlockType = 'unknown';
   let markdownBlockMatch;
+  if (codeBlockRegex.exec(markdownTextTarget) === null) {
+    markdownBlockList.push(new markdownBlock(markdownTextTarget, 'plain'));
+  }
   while ((markdownBlockMatch = codeBlockRegex.exec(markdownTextTarget)) !== null) {
     // 先頭から初めてmatchしたところまでの部分は、plain text、matchした部分は、code block
     let plainText = markdownTextTarget.slice(0, markdownBlockMatch.index);
