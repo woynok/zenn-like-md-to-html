@@ -76,7 +76,7 @@
   }
 
   /* h2, h3, ... を sticky section titleにする */
-  div.znc h2 {
+  body>div.container>div.doc-container>div.column-main-content div.znc h2 {
     font-size: 1.1em;
     position: sticky;
     padding-left: 10px;
@@ -94,7 +94,7 @@
     font-weight: 600;
   }
 
-  div.znc h3 {
+  body>div.container>div.doc-container>div.column-main-content div.znc h3 {
     font-size: 1em;
     padding-left: 15px;
     /* position: sticky; */
@@ -111,7 +111,7 @@
     font-weight: 600;
   }
 
-  div.znc h4 {
+  body>div.container>div.doc-container>div.column-main-content div.znc h4 {
     font-size: 0.95em;
     padding-left: 20px;
     /* background-color: rgb(215,215,215); */
@@ -122,7 +122,7 @@
     font-weight: 600;
   }
 
-  div.znc h5 {
+  body>div.container>div.doc-container>div.column-main-content div.znc h5 {
     font-size: 0.9em;
     padding-left: 25px;
     line-height: 1.15em;
@@ -130,34 +130,40 @@
     font-weight: 600;
   }
 
-  div.znc p {
+  body>div.container>div.doc-container>div.column-main-content div.znc p {
     margin: 1.2em;
     margin-left: 30px;
     line-height: 1.7;
     font-size: 0.9em;
   }
 
-  div.znc p strong {
+  body>div.container>div.doc-container>div.column-main-content div.znc>ol,
+  body>div.container>div.doc-container>div.column-main-content div.znc>ul {
+    margin-left: 20px;
+  }
+
+  body>div.container>div.doc-container>div.column-main-content div.znc ol,
+  body>div.container>div.doc-container>div.column-main-content div.znc ul {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+    line-height: 1.7;
+    font-size: 0.9em;
+  }
+
+  body>div.container>div.doc-container>div.column-main-content div.znc ol li,
+  body>div.container>div.doc-container>div.column-main-content div.znc ul li {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  body>div.container>div.doc-container>div.column-main-content div.znc strong {
     background: linear-gradient(transparent 50%, #90ffff 80%);
   }
 
-  /* div.znc h4 {
-      font-size: 0.85em;
-      position: sticky;
-      padding-left:20px;
-      background-color: rgb(235,235,235);
-      top: 3.0em;
-      height: 1.2em;
-      display: flex;
-      vertical-align: top;
-      line-height: 1.2em;
-      z-index: 7;
-    } */
-
-  div.znc h1>a::before,
-  div.znc h2>a::before,
-  div.znc h3>a::before,
-  div.znc h4>a::before {
+  body>div.container>div.doc-container>div.column-main-content div.znc h1>a::before,
+  body>div.container>div.doc-container>div.column-main-content div.znc h2>a::before,
+  body>div.container>div.doc-container>div.column-main-content div.znc h3>a::before,
+  body>div.container>div.doc-container>div.column-main-content div.znc h4>a::before {
     content: " ";
     display: block;
     position: relative;
@@ -166,7 +172,7 @@
     margin-top: -40px;
   }
 
-  div.znc span.anchor-link {
+  body>div.container>div.doc-container>div.column-main-content div.znc span.anchor-link {
     /* display: none; */
     position: absolute;
     transform: translateY(-40px);
@@ -187,6 +193,7 @@
     /* 横に並べる。中央ぞろえ */
     display: flex;
     flex-direction: row;
+    height: 40px;
   }
 
   body>div.container>div.file-navigation>div.file-navigation-switcher>.file-navigation-title {
@@ -207,13 +214,6 @@
 
   #file-navigation-switch {
     display: none;
-  }
-
-  body>div.container>div.file-navigation>div.file-navigation-switcher {
-    /* 横に並べる。中央ぞろえ */
-    display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
   }
 
   #file-navigation-switch~label {
@@ -362,7 +362,7 @@
       /* font-size: 1.0em; */
     }
 
-    div.znc h2 {
+    body>div.container>div.doc-container>div.column-main-content div.znc h2 {
       font-size: 1.1em;
       position: sticky;
       padding-left: 10px;
@@ -391,7 +391,7 @@
       margin-top: -40px;
     }
 
-    div.znc span.anchor-link {
+    body>div.container>div.doc-container>div.column-main-content div.znc span.anchor-link {
       /* display: none; */
       position: absolute;
       transform: translateY(-40px);
@@ -411,6 +411,7 @@
 
     body>div.container>div.file-navigation>div.file-navigation-switcher {
       display: block;
+      height: auto;
     }
 
     body>div.container>div.file-navigation>div.file-navigation-switcher>span.file-navigation-title {
