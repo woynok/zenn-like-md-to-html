@@ -32,7 +32,7 @@
 
   /* hover されている、 li.toc-level-1以外 を opacity をつけて多段で色を付ける */
   .toc li:not(.toc-level-1):hover {
-    background-color: rgba(0, 183, 255, 0.2);
+    background-color: rgba(120, 183, 255, 0.2);
   }
 
   .toc a:hover,
@@ -79,6 +79,15 @@
     transition:
       height 0.8s,
       opacity 0.8s;
+  }
+
+  .toc li.toc-level-3 ul {
+    display: none;
+  }
+
+  .toc li.toc-level-3:hover ul,
+  .toc li.toc-level-3:active ul {
+    display: block;
   }
 
   .toc li.toc-level-3:hover li.toc-level-4,
